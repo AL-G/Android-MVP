@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Rocket Launches</string>
+    <string name="activity_launch_list">Rocket Launches</string>
+    <string name="activity_launch_details">Launch Details</string>
+    <string name="loading">LOADING</string>
+    <string name="launch_status">Status: %1$s</string>
+    <string name="launch_status_green">Green</string>
+    <string name="launch_status_red">Red</string>
+    <string name="launch_status_success">Success</string>
+    <string name="launch_status_failed">Failed</string>
+    <string name="launch_window">Launch Window: %1$s - %2$s</string>
+    <string name="launch_pads">Launch Pads</string>
+    <string name="rocket_details">Rocket Details</string>
+    <string name="rocket_name">Name: %1$s</string>
+    <string name="rocket_family">Family: %1$s</string>
+    <string name="rocket_conf">Configuration: %1$s</string>
+    <string name="rocket_wiki">&lt;a href="%1$s">Wiki&lt;/a></string>
+    <string name="pad_name">Name: %1$s</string>
+    <string name="pad_info">&lt;a href="%1$s">Info&lt;/a></string>
+    <string name="pad_wiki">&lt;a href="%1$s">Wiki&lt;/a></string>
+    <string name="pad_map">&lt;a href="%1$s">Map&lt;/a></string>
+    <string name="pad_lat">Latitude: %1$s</string>
+    <string name="pad_long">Longitude: %1$s</string>
+    <string name="rocket_image_content_description">Rocket Image</string>
+    <string name="error_null_launch">Launch details failed to load, please try again</string>
+</resources>

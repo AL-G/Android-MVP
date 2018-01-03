@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="recyclerview_item_divider_margin_top">16dp</dimen>
+    <dimen name="recyclerview_item_padding">16dp</dimen>
+
+    <dimen name="medium_padding">16dp</dimen>
+
+</resources>
