@@ -1,8 +1,8 @@
-package com.fivedrawdesign.rocketlaunches.contracts;
+package com.fivedrawdesign.rocketlaunches.details_screen;
 
-import com.fivedrawdesign.rocketlaunches.presenters.BasePresenter;
-import com.fivedrawdesign.rocketlaunches.views.BaseView;
-import com.fivedrawdesign.rocketlaunches.data.model.Launch;
+import com.fivedrawdesign.rocketlaunches.utils.BasePresenter;
+import com.fivedrawdesign.rocketlaunches.utils.BaseView;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
 
 /**
  * This specifies the contract between the view (LaunchDetailsViewfragment) and the presenter

@@ -1,28 +1,35 @@
-package com.fivedrawdesign.rocketlaunches.views;
+package com.fivedrawdesign.rocketlaunches.list_screen;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.contracts.LaunchListContract;
-import com.fivedrawdesign.rocketlaunches.data.model.Launches;
-import com.fivedrawdesign.rocketlaunches.adapters.LaunchesAdapter;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.list_screen.adapters.LaunchesAdapter;
+import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
+import com.fivedrawdesign.rocketlaunches.utils.BaseLoadingFragment;
+
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Launch list view
  */
-public class LaunchListViewFragment extends BaseLoadingFragment implements LaunchListContract.View {
+public class LaunchListViewFragment extends BaseLoadingFragment implements LaunchListContract.View, LaunchesDataSource.LoadLaunchesCallback {
 
     private LaunchListContract.Presenter presenter;
 
     @BindView(R.id.launch_list_recyclerview)
     RecyclerView recyclerView;
+
+    LaunchesAdapter mLaunchesAdapter;
 
     private View root;
 
@@ -49,16 +56,23 @@ public class LaunchListViewFragment extends BaseLoadingFragment implements Launc
     }
 
     @Override
-    public void displayLaunches(Launches result) {
-        if (result.getLaunches().size() > 0) {
-            LaunchesAdapter mLaunchesAdapter = new LaunchesAdapter(getContext());
+    public void displayLaunches(List<Launch> results) {
+        if (results.size() > 0) {
+            mLaunchesAdapter = new LaunchesAdapter(getContext());
             recyclerView.setAdapter(mLaunchesAdapter);
-            mLaunchesAdapter.setData(result.getLaunches());
+            mLaunchesAdapter.setData(getPresenter().getCachedLaunches());
+            mLaunchesAdapter.setData(results);
             mLaunchesAdapter.notifyDataSetChanged();
             hideLoading();
         } else {
             displayEmpty();
         }
+    }
+
+    @Override
+    public void updateDisplay() {
+
+        mLaunchesAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -69,5 +83,16 @@ public class LaunchListViewFragment extends BaseLoadingFragment implements Launc
     @Override
     public LaunchListContract.Presenter getPresenter(){
         return presenter;
+    }
+
+
+    @Override
+    public void onLaunchesLoaded(List<Launch> launches) {
+        mLaunchesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onDataNotAvailable() {
+
     }
 }

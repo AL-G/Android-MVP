@@ -3,15 +3,14 @@ package com.fivedrawdesign.rocketlaunches.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
-import com.fivedrawdesign.rocketlaunches.HelperUtils;
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.contracts.LaunchDetailsContract;
-import com.fivedrawdesign.rocketlaunches.contracts.LaunchListContract;
-import com.fivedrawdesign.rocketlaunches.views.LaunchDetailsViewFragment;
-import com.fivedrawdesign.rocketlaunches.views.LaunchListViewFragment;
-import com.fivedrawdesign.rocketlaunches.presenters.LaunchListPresenter;
+import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsContract;
+import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsViewFragment;
+import com.fivedrawdesign.rocketlaunches.list_screen.LaunchListContract;
+import com.fivedrawdesign.rocketlaunches.list_screen.LaunchListPresenter;
+import com.fivedrawdesign.rocketlaunches.list_screen.LaunchListViewFragment;
+import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
 
 import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_DETAILS_FRAGMENT_TAG;
 import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_LIST_FRAGMENT_TAG;
@@ -73,7 +72,7 @@ public class LaunchListActivity extends AppCompatActivity {
         return true;
     }
 
-    private void reinitializeTitleBar(){
+    private void reinitializeTitleBar() {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             getSupportActionBar().setTitle(R.string.activity_launch_list);

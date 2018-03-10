@@ -1,10 +1,8 @@
-package com.fivedrawdesign.rocketlaunches.presenters;
+package com.fivedrawdesign.rocketlaunches.details_screen;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.model.Launch;
-import com.fivedrawdesign.rocketlaunches.contracts.LaunchDetailsContract;
-import com.fivedrawdesign.rocketlaunches.views.LaunchDetailsViewFragment;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
 
 /**
  * Presenter for the launch details activity

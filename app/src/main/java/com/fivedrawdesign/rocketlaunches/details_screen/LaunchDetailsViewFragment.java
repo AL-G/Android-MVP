@@ -1,4 +1,4 @@
-package com.fivedrawdesign.rocketlaunches.views;
+package com.fivedrawdesign.rocketlaunches.details_screen;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -14,15 +14,15 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.contracts.LaunchDetailsContract;
-import com.fivedrawdesign.rocketlaunches.data.model.Launch;
-import com.fivedrawdesign.rocketlaunches.data.model.Pad;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.data.entities.Pad;
+import com.fivedrawdesign.rocketlaunches.utils.BaseLoadingFragment;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.fivedrawdesign.rocketlaunches.HelperUtils.isValidLink;
+import static com.fivedrawdesign.rocketlaunches.utils.HelperUtils.isValidLink;
 
 /**
  * Launch details view
@@ -58,7 +58,7 @@ public class LaunchDetailsViewFragment extends BaseLoadingFragment implements La
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             root = inflater.inflate(R.layout.launch_details_fragment, container, false);
         }
 
@@ -83,7 +83,7 @@ public class LaunchDetailsViewFragment extends BaseLoadingFragment implements La
     public void displayLaunchDetails(Launch launch) {
 
         // set the actionbar title
-        ActionBar actionBar = ((AppCompatActivity)getContext()).getSupportActionBar();
+        ActionBar actionBar = ((AppCompatActivity) getContext()).getSupportActionBar();
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
             actionBar.setDisplayHomeAsUpEnabled(true);

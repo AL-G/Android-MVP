@@ -1,4 +1,4 @@
-package com.fivedrawdesign.rocketlaunches.views;
+package com.fivedrawdesign.rocketlaunches.utils;
 
 public interface BaseView<T> {
 

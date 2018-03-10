@@ -1,6 +1,8 @@
 
-package com.fivedrawdesign.rocketlaunches.data.model;
+package com.fivedrawdesign.rocketlaunches.data.entities;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,8 +12,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "locations")
 public class Location implements Serializable, Parcelable {
 
+    @PrimaryKey
     @SerializedName("pads")
     @Expose
     private List<Pad> pads = null;

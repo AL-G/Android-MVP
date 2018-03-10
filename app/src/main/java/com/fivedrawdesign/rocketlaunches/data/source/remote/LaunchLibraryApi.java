@@ -1,6 +1,6 @@
-package com.fivedrawdesign.rocketlaunches.data;
+package com.fivedrawdesign.rocketlaunches.data.source.remote;
 
-import com.fivedrawdesign.rocketlaunches.data.model.Launches;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launches;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

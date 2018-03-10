@@ -1,4 +1,4 @@
-package com.fivedrawdesign.rocketlaunches.presenters;
+package com.fivedrawdesign.rocketlaunches.utils;
 
 public interface BasePresenter {
 

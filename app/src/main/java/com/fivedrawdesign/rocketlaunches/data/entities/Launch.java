@@ -1,6 +1,9 @@
 
-package com.fivedrawdesign.rocketlaunches.data.model;
+package com.fivedrawdesign.rocketlaunches.data.entities;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,9 +13,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "launches")
 public class Launch implements Serializable, Parcelable
 {
-
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -55,12 +59,14 @@ public class Launch implements Serializable, Parcelable
     @SerializedName("tbdtime")
     @Expose
     private Integer tbdtime;
+    @Ignore
     @SerializedName("vidURLs")
     @Expose
     private List<String> vidURLs = null;
     @SerializedName("vidURL")
     @Expose
     private String vidURL;
+    @Ignore
     @SerializedName("infoURLs")
     @Expose
     private List<String> infoURLs = null;
@@ -82,15 +88,19 @@ public class Launch implements Serializable, Parcelable
     @SerializedName("hashtag")
     @Expose
     private String hashtag;
+    @Ignore
     @SerializedName("location")
     @Expose
     private Location location;
+    @Ignore
     @SerializedName("rocket")
     @Expose
     private Rocket rocket;
+    @Ignore
     @SerializedName("missions")
     @Expose
     private List<Object> missions = null;
+    @Ignore
     @SerializedName("lsp")
     @Expose
     private Lsp lsp;
@@ -216,7 +226,7 @@ public class Launch implements Serializable, Parcelable
         this.vidURLs = vidURLs;
     }
 
-    public Object getVidURL() {
+    public String getVidURL() {
         return vidURL;
     }
 
@@ -232,7 +242,7 @@ public class Launch implements Serializable, Parcelable
         this.infoURLs = infoURLs;
     }
 
-    public Object getInfoURL() {
+    public String getInfoURL() {
         return infoURL;
     }
 
@@ -240,7 +250,7 @@ public class Launch implements Serializable, Parcelable
         this.infoURL = infoURL;
     }
 
-    public Object getHoldreason() {
+    public String getHoldreason() {
         return holdreason;
     }
 
@@ -248,7 +258,7 @@ public class Launch implements Serializable, Parcelable
         this.holdreason = holdreason;
     }
 
-    public Object getFailreason() {
+    public String getFailreason() {
         return failreason;
     }
 
@@ -272,7 +282,7 @@ public class Launch implements Serializable, Parcelable
         this.probability = probability;
     }
 
-    public Object getHashtag() {
+    public String getHashtag() {
         return hashtag;
     }
 

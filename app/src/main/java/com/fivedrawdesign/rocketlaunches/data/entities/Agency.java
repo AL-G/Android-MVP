@@ -1,6 +1,8 @@
 
-package com.fivedrawdesign.rocketlaunches.data.model;
+package com.fivedrawdesign.rocketlaunches.data.entities;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,8 +11,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Lsp implements Serializable, Parcelable {
+@Entity(tableName = "agencies")
+public class Agency implements Serializable, Parcelable {
 
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -35,7 +39,7 @@ public class Lsp implements Serializable, Parcelable {
     @SerializedName("infoURLs")
     @Expose
     private List<String> infoURLs = null;
-    private final static long serialVersionUID = 7463620383697087557L;
+    private final static long serialVersionUID = -9085194871075769757L;
 
     public Integer getId() {
         return id;
@@ -119,10 +123,10 @@ public class Lsp implements Serializable, Parcelable {
         dest.writeStringList(this.infoURLs);
     }
 
-    public Lsp() {
+    public Agency() {
     }
 
-    protected Lsp(Parcel in) {
+    protected Agency(Parcel in) {
         this.id = (Integer) in.readValue(Integer.class.getClassLoader());
         this.name = in.readString();
         this.abbrev = in.readString();
@@ -133,15 +137,15 @@ public class Lsp implements Serializable, Parcelable {
         this.infoURLs = in.createStringArrayList();
     }
 
-    public static final Parcelable.Creator<Lsp> CREATOR = new Parcelable.Creator<Lsp>() {
+    public static final Parcelable.Creator<Agency> CREATOR = new Parcelable.Creator<Agency>() {
         @Override
-        public Lsp createFromParcel(Parcel source) {
-            return new Lsp(source);
+        public Agency createFromParcel(Parcel source) {
+            return new Agency(source);
         }
 
         @Override
-        public Lsp[] newArray(int size) {
-            return new Lsp[size];
+        public Agency[] newArray(int size) {
+            return new Agency[size];
         }
     };
 

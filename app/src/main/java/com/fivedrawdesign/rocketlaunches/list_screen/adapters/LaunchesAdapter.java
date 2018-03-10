@@ -1,7 +1,6 @@
-package com.fivedrawdesign.rocketlaunches.adapters;
+package com.fivedrawdesign.rocketlaunches.list_screen.adapters;
 
 import android.content.Context;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fivedrawdesign.rocketlaunches.HelperUtils;
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.data.model.Launch;
-import com.fivedrawdesign.rocketlaunches.presenters.LaunchDetailsPresenter;
-import com.fivedrawdesign.rocketlaunches.views.LaunchDetailsViewFragment;
+import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsPresenter;
+import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsViewFragment;
+import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,10 +85,10 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
                 LaunchDetailsViewFragment viewFragment = new LaunchDetailsViewFragment();
 
                 HelperUtils.addFragmentToBackstack(
-                        ((AppCompatActivity)context).getSupportFragmentManager(), viewFragment,
+                        ((AppCompatActivity) context).getSupportFragmentManager(), viewFragment,
                         R.id.launches_frame, LAUNCH_DETAILS_FRAGMENT_TAG);
 
-                ((AppCompatActivity)context).getSupportFragmentManager().executePendingTransactions();
+                ((AppCompatActivity) context).getSupportFragmentManager().executePendingTransactions();
 
                 new LaunchDetailsPresenter(viewFragment);
 

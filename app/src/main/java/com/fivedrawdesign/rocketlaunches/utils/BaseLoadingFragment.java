@@ -1,4 +1,4 @@
-package com.fivedrawdesign.rocketlaunches.views;
+package com.fivedrawdesign.rocketlaunches.utils;
 
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;

@@ -1,5 +1,7 @@
 package com.fivedrawdesign.rocketlaunches;
 
+import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
