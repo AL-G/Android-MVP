@@ -1,0 +1,45 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    // App dependencies versions
+    retrofitVersion = '2.3.0'
+    retrofitGsonConverterVersion = '2.3.0'
+    retrofitAdapterVersion = '2.3.0'
+    rxjava2Version = '2.0.8'
+    roomVersion = "1.0.0"
+    rxandroidVersion = '2.0.1'
+    butterknifeVersion = '8.8.1'
+    supportLibraryVersion = '26.+'
+    gsonVersion = '2.8.0'
+    picassoVersion = '2.5.2'
+    junitVersion = '4.12'
+    testRunnerVersion = '1.0.1'
+    espressoCoreVersion = '3.0.1'
+    daggerVersion = '2.11'
+}
