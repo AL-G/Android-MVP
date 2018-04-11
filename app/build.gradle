@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.fivedrawdesign.rocketlaunches"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,18 +38,18 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
 
-    compile "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
 
     // Dagger dependencies
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    provided 'org.glassfish:javax.annotation:10.0-b28'
-    compile "com.google.dagger:dagger:$rootProject.daggerVersion"
-    compile "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    compile "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 
-    compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
 
