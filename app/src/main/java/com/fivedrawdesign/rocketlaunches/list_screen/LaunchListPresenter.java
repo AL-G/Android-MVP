@@ -1,7 +1,6 @@
 package com.fivedrawdesign.rocketlaunches.list_screen;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
 import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;

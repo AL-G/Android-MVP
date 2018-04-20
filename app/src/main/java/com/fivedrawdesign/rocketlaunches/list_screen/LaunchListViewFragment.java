@@ -3,15 +3,14 @@ package com.fivedrawdesign.rocketlaunches.list_screen;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fivedrawdesign.rocketlaunches.R;
 import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
-import com.fivedrawdesign.rocketlaunches.list_screen.adapters.LaunchesAdapter;
 import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
+import com.fivedrawdesign.rocketlaunches.list_screen.adapters.LaunchesAdapter;
 import com.fivedrawdesign.rocketlaunches.utils.BaseLoadingFragment;
 
 import java.util.List;

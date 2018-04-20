@@ -4,7 +4,8 @@ import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * HelperUtils tests
