@@ -1,41 +1,81 @@
 
 package com.fivedrawdesign.rocketlaunches.data.entities;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "locations")
-public class Location implements Serializable, Parcelable {
+public class Location implements Parcelable
+{
 
-    @PrimaryKey
     @SerializedName("pads")
     @Expose
-    private List<Pad> pads = null;
+    private List<Pad> pads = new ArrayList<Pad>();
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("infoURL")
-    @Expose
-    private String infoURL;
     @SerializedName("wikiURL")
     @Expose
     private String wikiURL;
     @SerializedName("countryCode")
     @Expose
     private String countryCode;
-    private final static long serialVersionUID = -1462675987008903635L;
+    public final static Creator<Location> CREATOR = new Creator<Location>() {
+
+
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        public Location[] newArray(int size) {
+            return (new Location[size]);
+        }
+
+    }
+    ;
+
+    protected Location(Parcel in) {
+        in.readList(this.pads, (Pad.class.getClassLoader()));
+        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.wikiURL = ((String) in.readValue((String.class.getClassLoader())));
+        this.countryCode = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
+    public Location() {
+    }
+
+    /**
+     * 
+     * @param id
+     * @param wikiURL
+     * @param name
+     * @param pads
+     * @param countryCode
+     */
+    public Location(List<Pad> pads, Integer id, String name, String wikiURL, String countryCode) {
+        super();
+        this.pads = pads;
+        this.id = id;
+        this.name = name;
+        this.wikiURL = wikiURL;
+        this.countryCode = countryCode;
+    }
 
     public List<Pad> getPads() {
         return pads;
@@ -61,14 +101,6 @@ public class Location implements Serializable, Parcelable {
         this.name = name;
     }
 
-    public String getInfoURL() {
-        return infoURL;
-    }
-
-    public void setInfoURL(String infoURL) {
-        this.infoURL = infoURL;
-    }
-
     public String getWikiURL() {
         return wikiURL;
     }
@@ -85,45 +117,16 @@ public class Location implements Serializable, Parcelable {
         this.countryCode = countryCode;
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeList(this.pads);
-        dest.writeValue(this.id);
-        dest.writeString(this.name);
-        dest.writeString(this.infoURL);
-        dest.writeString(this.wikiURL);
-        dest.writeString(this.countryCode);
+        dest.writeList(pads);
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(wikiURL);
+        dest.writeValue(countryCode);
     }
 
-    public Location() {
+    public int describeContents() {
+        return  0;
     }
-
-    protected Location(Parcel in) {
-        this.pads = new ArrayList<Pad>();
-        in.readList(this.pads, Pad.class.getClassLoader());
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.name = in.readString();
-        this.infoURL = in.readString();
-        this.wikiURL = in.readString();
-        this.countryCode = in.readString();
-    }
-
-    public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
-        @Override
-        public Location createFromParcel(Parcel source) {
-            return new Location(source);
-        }
-
-        @Override
-        public Location[] newArray(int size) {
-            return new Location[size];
-        }
-    };
 
 }

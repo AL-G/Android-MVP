@@ -1,46 +1,124 @@
 
 package com.fivedrawdesign.rocketlaunches.data.entities;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "pads")
-public class Pad implements Serializable, Parcelable {
+public class Pad implements Parcelable
+{
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("infoURL")
+    @SerializedName("padType")
     @Expose
-    private String infoURL;
-    @SerializedName("wikiURL")
+    private Integer padType;
+    @SerializedName("latitude")
     @Expose
-    private String wikiURL;
+    private String latitude;
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
     @SerializedName("mapURL")
     @Expose
     private String mapURL;
-    @SerializedName("latitude")
+    @SerializedName("retired")
     @Expose
-    private Double latitude;
-    @SerializedName("longitude")
+    private Integer retired;
+    @SerializedName("locationid")
     @Expose
-    private Double longitude;
+    private Integer locationid;
     @SerializedName("agencies")
     @Expose
-    private List<Agency> agencies = null;
-    private final static long serialVersionUID = 2338054805496832956L;
+    private List<Agency> agencies = new ArrayList();
+    @SerializedName("wikiURL")
+    @Expose
+    private String wikiURL;
+    @SerializedName("infoURLs")
+    @Expose
+    private List<Object> infoURLs = new ArrayList();
+    @SerializedName("changed")
+    @Expose
+    private String changed;
+    public final static Creator<Pad> CREATOR = new Creator<Pad>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Pad createFromParcel(Parcel in) {
+            return new Pad(in);
+        }
+
+        public Pad[] newArray(int size) {
+            return (new Pad[size]);
+        }
+
+    }
+            ;
+
+    protected Pad(Parcel in) {
+        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.padType = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.latitude = ((String) in.readValue((String.class.getClassLoader())));
+        this.longitude = ((String) in.readValue((String.class.getClassLoader())));
+        this.mapURL = ((String) in.readValue((String.class.getClassLoader())));
+        this.retired = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.locationid = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        in.readList(this.agencies, (Agency.class.getClassLoader()));
+        this.wikiURL = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.infoURLs, (Object.class.getClassLoader()));
+        this.changed = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Pad() {
+    }
+
+    /**
+     *
+     * @param padType
+     * @param id
+     * @param wikiURL
+     * @param locationid
+     * @param mapURL
+     * @param name
+     * @param retired
+     * @param agencies
+     * @param longitude
+     * @param latitude
+     * @param infoURLs
+     * @param changed
+     */
+    public Pad(Integer id, String name, Integer padType, String latitude, String longitude, String mapURL, Integer retired, Integer locationid, List<Agency> agencies, String wikiURL, List<Object> infoURLs, String changed) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.padType = padType;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.mapURL = mapURL;
+        this.retired = retired;
+        this.locationid = locationid;
+        this.agencies = agencies;
+        this.wikiURL = wikiURL;
+        this.infoURLs = infoURLs;
+        this.changed = changed;
+    }
 
     public Integer getId() {
         return id;
@@ -58,20 +136,28 @@ public class Pad implements Serializable, Parcelable {
         this.name = name;
     }
 
-    public String getInfoURL() {
-        return infoURL;
+    public Integer getPadType() {
+        return padType;
     }
 
-    public void setInfoURL(String infoURL) {
-        this.infoURL = infoURL;
+    public void setPadType(Integer padType) {
+        this.padType = padType;
     }
 
-    public String getWikiURL() {
-        return wikiURL;
+    public String getLatitude() {
+        return latitude;
     }
 
-    public void setWikiURL(String wikiURL) {
-        this.wikiURL = wikiURL;
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getMapURL() {
@@ -82,20 +168,20 @@ public class Pad implements Serializable, Parcelable {
         this.mapURL = mapURL;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Integer getRetired() {
+        return retired;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setRetired(Integer retired) {
+        this.retired = retired;
     }
 
-    public Double getLongitude() {
-        return longitude;
+    public Integer getLocationid() {
+        return locationid;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setLocationid(Integer locationid) {
+        this.locationid = locationid;
     }
 
     public List<Agency> getAgencies() {
@@ -106,48 +192,47 @@ public class Pad implements Serializable, Parcelable {
         this.agencies = agencies;
     }
 
+    public String getWikiURL() {
+        return wikiURL;
+    }
 
-    @Override
+    public void setWikiURL(String wikiURL) {
+        this.wikiURL = wikiURL;
+    }
+
+    public List<Object> getInfoURLs() {
+        return infoURLs;
+    }
+
+    public void setInfoURLs(List<Object> infoURLs) {
+        this.infoURLs = infoURLs;
+    }
+
+    public String getChanged() {
+        return changed;
+    }
+
+    public void setChanged(String changed) {
+        this.changed = changed;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(padType);
+        dest.writeValue(latitude);
+        dest.writeValue(longitude);
+        dest.writeValue(mapURL);
+        dest.writeValue(retired);
+        dest.writeValue(locationid);
+        dest.writeList(agencies);
+        dest.writeValue(wikiURL);
+        dest.writeList(infoURLs);
+        dest.writeValue(changed);
+    }
+
     public int describeContents() {
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
-        dest.writeString(this.name);
-        dest.writeString(this.infoURL);
-        dest.writeString(this.wikiURL);
-        dest.writeString(this.mapURL);
-        dest.writeValue(this.latitude);
-        dest.writeValue(this.longitude);
-        dest.writeTypedList(this.agencies);
-    }
-
-    public Pad() {
-    }
-
-    protected Pad(Parcel in) {
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.name = in.readString();
-        this.infoURL = in.readString();
-        this.wikiURL = in.readString();
-        this.mapURL = in.readString();
-        this.latitude = (Double) in.readValue(Double.class.getClassLoader());
-        this.longitude = (Double) in.readValue(Double.class.getClassLoader());
-        this.agencies = in.createTypedArrayList(Agency.CREATOR);
-    }
-
-    public static final Parcelable.Creator<Pad> CREATOR = new Parcelable.Creator<Pad>() {
-        @Override
-        public Pad createFromParcel(Parcel source) {
-            return new Pad(source);
-        }
-
-        @Override
-        public Pad[] newArray(int size) {
-            return new Pad[size];
-        }
-    };
 
 }

@@ -8,7 +8,7 @@
     <string name="launch_status_red">Red</string>
     <string name="launch_status_success">Success</string>
     <string name="launch_status_failed">Failed</string>
-    <string name="launch_window">Launch Window: %1$s - %2$s</string>
+    <string name="launch_date">Launch Date: %1$s</string>
     <string name="launch_pads">Launch Pads</string>
     <string name="rocket_details">Rocket Details</string>
     <string name="rocket_name">Name: %1$s</string>

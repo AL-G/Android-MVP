@@ -7,24 +7,50 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Launches implements Serializable, Parcelable {
+public class Launches implements Parcelable
+{
 
     @SerializedName("launches")
     @Expose
-    private List<Launch> launches = null;
+    private List<Launch> launches = new ArrayList<>();
     @SerializedName("total")
     @Expose
     private Integer total;
     @SerializedName("offset")
     @Expose
-    private Integer offset;
+    private String offset;
     @SerializedName("count")
     @Expose
     private Integer count;
-    private final static long serialVersionUID = 4330453745354054745L;
+    public final static Creator<Launches> CREATOR = new Creator<Launches>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Launches createFromParcel(Parcel in) {
+            return new Launches(in);
+        }
+
+        public Launches[] newArray(int size) {
+            return (new Launches[size]);
+        }
+
+    }
+            ;
+
+    protected Launches(Parcel in) {
+        in.readList(this.launches, (Launch.class.getClassLoader()));
+        this.total = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.offset = ((String) in.readValue((String.class.getClassLoader())));
+        this.count = ((Integer) in.readValue((Integer.class.getClassLoader())));
+    }
+
+    public Launches() {
+    }
 
     public List<Launch> getLaunches() {
         return launches;
@@ -42,11 +68,11 @@ public class Launches implements Serializable, Parcelable {
         this.total = total;
     }
 
-    public Integer getOffset() {
+    public String getOffset() {
         return offset;
     }
 
-    public void setOffset(Integer offset) {
+    public void setOffset(String offset) {
         this.offset = offset;
     }
 
@@ -58,40 +84,15 @@ public class Launches implements Serializable, Parcelable {
         this.count = count;
     }
 
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeList(launches);
+        dest.writeValue(total);
+        dest.writeValue(offset);
+        dest.writeValue(count);
+    }
 
-    @Override
     public int describeContents() {
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.launches);
-        dest.writeValue(this.total);
-        dest.writeValue(this.offset);
-        dest.writeValue(this.count);
-    }
-
-    public Launches() {
-    }
-
-    protected Launches(Parcel in) {
-        this.launches = in.createTypedArrayList(Launch.CREATOR);
-        this.total = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.offset = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.count = (Integer) in.readValue(Integer.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<Launches> CREATOR = new Parcelable.Creator<Launches>() {
-        @Override
-        public Launches createFromParcel(Parcel source) {
-            return new Launches(source);
-        }
-
-        @Override
-        public Launches[] newArray(int size) {
-            return new Launches[size];
-        }
-    };
 
 }

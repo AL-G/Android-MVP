@@ -1,22 +1,17 @@
 
 package com.fivedrawdesign.rocketlaunches.data.entities;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "rockets")
-public class Rocket implements Serializable, Parcelable {
+public class Rocket implements Parcelable {
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -26,25 +21,93 @@ public class Rocket implements Serializable, Parcelable {
     @SerializedName("configuration")
     @Expose
     private String configuration;
-    @SerializedName("familyname")
+    @SerializedName("defaultPads")
     @Expose
-    private String familyname;
-    @SerializedName("agencies")
+    private String defaultPads;
+    @SerializedName("family")
     @Expose
-    private List<Agency> agencies = null;
+    private RocketFamily family;
     @SerializedName("wikiURL")
     @Expose
     private String wikiURL;
     @SerializedName("infoURLs")
     @Expose
-    private List<Object> infoURLs = null;
+    private List<String> infoURLs = new ArrayList<>();
+    @SerializedName("imageSizes")
+    @Expose
+    private List<Integer> imageSizes = new ArrayList<>();
     @SerializedName("imageURL")
     @Expose
     private String imageURL;
-    @SerializedName("imageSizes")
+    @SerializedName("changed")
     @Expose
-    private List<Integer> imageSizes = null;
-    private final static long serialVersionUID = 7072142423750805896L;
+    private String changed;
+    @SerializedName("agencies")
+    @Expose
+    private List<Agency> agencies = new ArrayList<>();
+
+    public final static Creator<Rocket> CREATOR = new Creator<Rocket>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Rocket createFromParcel(Parcel in) {
+            return new Rocket(in);
+        }
+
+        public Rocket[] newArray(int size) {
+            return (new Rocket[size]);
+        }
+
+    };
+
+    protected Rocket(Parcel in) {
+        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.configuration = ((String) in.readValue((String.class.getClassLoader())));
+        this.defaultPads = ((String) in.readValue((String.class.getClassLoader())));
+        this.family = ((RocketFamily) in.readValue((RocketFamily.class.getClassLoader())));
+        this.wikiURL = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.infoURLs, (String.class.getClassLoader()));
+        in.readList(this.imageSizes, (Integer.class.getClassLoader()));
+        this.imageURL = ((String) in.readValue((String.class.getClassLoader())));
+        this.changed = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.agencies, (Agency.class.getClassLoader()));
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public Rocket() {
+    }
+
+    /**
+     * @param id
+     * @param wikiURL
+     * @param imageSizes
+     * @param family
+     * @param name
+     * @param defaultPads
+     * @param configuration
+     * @param infoURLs
+     * @param imageURL
+     * @param changed
+     */
+    public Rocket(Integer id, String name, String configuration, String defaultPads, RocketFamily family, String wikiURL, List<String> infoURLs, List<Integer> imageSizes, String imageURL, String changed, List<Agency> agencies) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.configuration = configuration;
+        this.defaultPads = defaultPads;
+        this.family = family;
+        this.wikiURL = wikiURL;
+        this.infoURLs = infoURLs;
+        this.imageSizes = imageSizes;
+        this.imageURL = imageURL;
+        this.changed = changed;
+        this.agencies = agencies;
+    }
 
     public Integer getId() {
         return id;
@@ -70,20 +133,20 @@ public class Rocket implements Serializable, Parcelable {
         this.configuration = configuration;
     }
 
-    public String getFamilyname() {
-        return familyname;
+    public String getDefaultPads() {
+        return defaultPads;
     }
 
-    public void setFamilyname(String familyname) {
-        this.familyname = familyname;
+    public void setDefaultPads(String defaultPads) {
+        this.defaultPads = defaultPads;
     }
 
-    public List<Agency> getAgencies() {
-        return agencies;
+    public RocketFamily getFamily() {
+        return family;
     }
 
-    public void setAgencies(List<Agency> agencies) {
-        this.agencies = agencies;
+    public void setFamily(RocketFamily family) {
+        this.family = family;
     }
 
     public String getWikiURL() {
@@ -94,20 +157,12 @@ public class Rocket implements Serializable, Parcelable {
         this.wikiURL = wikiURL;
     }
 
-    public List<Object> getInfoURLs() {
+    public List<String> getInfoURLs() {
         return infoURLs;
     }
 
-    public void setInfoURLs(List<Object> infoURLs) {
+    public void setInfoURLs(List<String> infoURLs) {
         this.infoURLs = infoURLs;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
     }
 
     public List<Integer> getImageSizes() {
@@ -118,52 +173,45 @@ public class Rocket implements Serializable, Parcelable {
         this.imageSizes = imageSizes;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
 
-    @Override
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getChanged() {
+        return changed;
+    }
+
+    public void setChanged(String changed) {
+        this.changed = changed;
+    }
+
+    public List<Agency> getAgencies() {
+        return agencies;
+    }
+
+    public void setAgencies(List<Agency> agencies) {
+        this.agencies = agencies;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(configuration);
+        dest.writeValue(defaultPads);
+        dest.writeValue(family);
+        dest.writeValue(wikiURL);
+        dest.writeList(infoURLs);
+        dest.writeList(imageSizes);
+        dest.writeValue(imageURL);
+        dest.writeValue(changed);
+    }
+
     public int describeContents() {
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
-        dest.writeString(this.name);
-        dest.writeString(this.configuration);
-        dest.writeString(this.familyname);
-        dest.writeTypedList(this.agencies);
-        dest.writeString(this.wikiURL);
-        dest.writeList(this.infoURLs);
-        dest.writeString(this.imageURL);
-        dest.writeList(this.imageSizes);
-    }
-
-    public Rocket() {
-    }
-
-    protected Rocket(Parcel in) {
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.name = in.readString();
-        this.configuration = in.readString();
-        this.familyname = in.readString();
-        this.agencies = in.createTypedArrayList(Agency.CREATOR);
-        this.wikiURL = in.readString();
-        this.infoURLs = new ArrayList<Object>();
-        in.readList(this.infoURLs, Object.class.getClassLoader());
-        this.imageURL = in.readString();
-        this.imageSizes = new ArrayList<Integer>();
-        in.readList(this.imageSizes, Integer.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<Rocket> CREATOR = new Parcelable.Creator<Rocket>() {
-        @Override
-        public Rocket createFromParcel(Parcel source) {
-            return new Rocket(source);
-        }
-
-        @Override
-        public Rocket[] newArray(int size) {
-            return new Rocket[size];
-        }
-    };
 
 }

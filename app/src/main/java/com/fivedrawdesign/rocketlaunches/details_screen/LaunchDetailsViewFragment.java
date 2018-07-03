@@ -92,7 +92,7 @@ public class LaunchDetailsViewFragment extends BaseLoadingFragment implements La
 
         rocketName.setText(getString(R.string.rocket_name, launch.getRocket().getName()));
         rocketConf.setText(getString(R.string.rocket_conf, launch.getRocket().getConfiguration()));
-        rocketFamilyName.setText(getString(R.string.rocket_family, launch.getRocket().getFamilyname()));
+        //rocketFamilyName.setText(getString(R.string.rocket_family, launch.getRocket().getFamilyname()));
 
         if (isValidLink(launch.getRocket().getWikiURL())) {
             rocketWikiUrl.setText(Html.fromHtml(getString(R.string.rocket_wiki, launch.getRocket().getWikiURL())));
@@ -112,13 +112,13 @@ public class LaunchDetailsViewFragment extends BaseLoadingFragment implements La
 
             ((TextView) view.findViewById(R.id.pad_name)).setText(getString(R.string.pad_name, pad.getName()));
 
-            TextView infoUrl = view.findViewById(R.id.pad_info_url);
-            if (isValidLink(pad.getInfoURL())) {
-                infoUrl.setText(Html.fromHtml(getString(R.string.pad_info, pad.getInfoURL())));
-                infoUrl.setVisibility(View.VISIBLE);
-            } else {
-                infoUrl.setVisibility(View.GONE);
-            }
+//            TextView infoUrl = view.findViewById(R.id.pad_info_url);
+//            if (isValidLink(pad.getInfoURL())) {
+//                infoUrl.setText(Html.fromHtml(getString(R.string.pad_info, pad.getInfoURL())));
+//                infoUrl.setVisibility(View.VISIBLE);
+//            } else {
+//                infoUrl.setVisibility(View.GONE);
+//            }
 
             TextView wikiUrl = view.findViewById(R.id.pad_wiki_url);
             if (isValidLink(pad.getWikiURL())) {

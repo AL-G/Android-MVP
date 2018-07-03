@@ -118,7 +118,7 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
         }
 
         // set the launch window
-        holder.launchWindow.setText(context.getString(R.string.launch_window, launch.getWindowstart(), launch.getWindowend()));
+        holder.launchWindow.setText(context.getString(R.string.launch_date, launch.getNet()));
 
     }
 
@@ -126,6 +126,7 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
     public int getItemCount() {
         return launches.size();
     }
+
 
 }
 

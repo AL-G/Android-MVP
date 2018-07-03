@@ -1,46 +1,113 @@
 
 package com.fivedrawdesign.rocketlaunches.data.entities;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "agencies")
-public class Agency implements Serializable, Parcelable {
+public class Agency implements Parcelable {
 
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("abbrev")
-    @Expose
-    private String abbrev;
     @SerializedName("countryCode")
     @Expose
     private String countryCode;
+    @SerializedName("abbrev")
+    @Expose
+    private String abbrev;
     @SerializedName("type")
     @Expose
     private Integer type;
-    @SerializedName("infoURL")
-    @Expose
-    private String infoURL;
     @SerializedName("wikiURL")
     @Expose
     private String wikiURL;
     @SerializedName("infoURLs")
     @Expose
-    private List<String> infoURLs = null;
-    private final static long serialVersionUID = -9085194871075769757L;
+    private List<String> infoURLs = new ArrayList();
+    @SerializedName("islsp")
+    @Expose
+    private Integer islsp;
+    @SerializedName("changed")
+    @Expose
+    private String changed;
+    public final static Creator<Agency> CREATOR = new Creator<Agency>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Agency createFromParcel(Parcel in) {
+            return new Agency(in);
+        }
+
+        public Agency[] newArray(int size) {
+            return (new Agency[size]);
+        }
+
+    };
+
+    protected Agency(Parcel in) {
+        this.id = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.countryCode = ((String) in.readValue((String.class.getClassLoader())));
+        this.abbrev = ((String) in.readValue((String.class.getClassLoader())));
+        this.type = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.wikiURL = ((String) in.readValue((String.class.getClassLoader())));
+        in.readList(this.infoURLs, (String.class.getClassLoader()));
+        this.islsp = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.changed = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(name);
+        dest.writeValue(countryCode);
+        dest.writeValue(abbrev);
+        dest.writeValue(type);
+        dest.writeValue(wikiURL);
+        dest.writeList(infoURLs);
+        dest.writeValue(islsp);
+        dest.writeValue(changed);
+    }
+
+    /**
+     * No args constructor for use in serialization
+     */
+    public Agency() {
+    }
+
+    /**
+     * @param id
+     * @param wikiURL
+     * @param islsp
+     * @param name
+     * @param countryCode
+     * @param abbrev
+     * @param type
+     * @param infoURLs
+     * @param changed
+     */
+    public Agency(Integer id, String name, String countryCode, String abbrev, Integer type, String wikiURL, List<String> infoURLs, Integer islsp, String changed) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.countryCode = countryCode;
+        this.abbrev = abbrev;
+        this.type = type;
+        this.wikiURL = wikiURL;
+        this.infoURLs = infoURLs;
+        this.islsp = islsp;
+        this.changed = changed;
+    }
 
     public Integer getId() {
         return id;
@@ -58,14 +125,6 @@ public class Agency implements Serializable, Parcelable {
         this.name = name;
     }
 
-    public String getAbbrev() {
-        return abbrev;
-    }
-
-    public void setAbbrev(String abbrev) {
-        this.abbrev = abbrev;
-    }
-
     public String getCountryCode() {
         return countryCode;
     }
@@ -74,20 +133,20 @@ public class Agency implements Serializable, Parcelable {
         this.countryCode = countryCode;
     }
 
+    public String getAbbrev() {
+        return abbrev;
+    }
+
+    public void setAbbrev(String abbrev) {
+        this.abbrev = abbrev;
+    }
+
     public Integer getType() {
         return type;
     }
 
     public void setType(Integer type) {
         this.type = type;
-    }
-
-    public String getInfoURL() {
-        return infoURL;
-    }
-
-    public void setInfoURL(String infoURL) {
-        this.infoURL = infoURL;
     }
 
     public String getWikiURL() {
@@ -106,48 +165,25 @@ public class Agency implements Serializable, Parcelable {
         this.infoURLs = infoURLs;
     }
 
+    public Integer getIslsp() {
+        return islsp;
+    }
 
-    @Override
+    public void setIslsp(Integer islsp) {
+        this.islsp = islsp;
+    }
+
+    public String getChanged() {
+        return changed;
+    }
+
+    public void setChanged(String changed) {
+        this.changed = changed;
+    }
+
+
     public int describeContents() {
         return 0;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
-        dest.writeString(this.name);
-        dest.writeString(this.abbrev);
-        dest.writeString(this.countryCode);
-        dest.writeValue(this.type);
-        dest.writeString(this.infoURL);
-        dest.writeString(this.wikiURL);
-        dest.writeStringList(this.infoURLs);
-    }
-
-    public Agency() {
-    }
-
-    protected Agency(Parcel in) {
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.name = in.readString();
-        this.abbrev = in.readString();
-        this.countryCode = in.readString();
-        this.type = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.infoURL = in.readString();
-        this.wikiURL = in.readString();
-        this.infoURLs = in.createStringArrayList();
-    }
-
-    public static final Parcelable.Creator<Agency> CREATOR = new Parcelable.Creator<Agency>() {
-        @Override
-        public Agency createFromParcel(Parcel source) {
-            return new Agency(source);
-        }
-
-        @Override
-        public Agency[] newArray(int size) {
-            return new Agency[size];
-        }
-    };
 
 }
