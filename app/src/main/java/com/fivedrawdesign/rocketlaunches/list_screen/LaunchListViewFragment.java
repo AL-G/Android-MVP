@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
-import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
+import com.fivedrawdesign.rocketlaunches.data.repository.DataSourceIntf;
 import com.fivedrawdesign.rocketlaunches.list_screen.adapters.LaunchesAdapter;
 import com.fivedrawdesign.rocketlaunches.utils.BaseLoadingFragment;
 
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Launch list view
  */
-public class LaunchListViewFragment extends BaseLoadingFragment implements LaunchListContract.View, LaunchesDataSource.LoadLaunchesCallback {
+public class LaunchListViewFragment extends BaseLoadingFragment implements LaunchListContract.View, DataSourceIntf.LoadLaunchesCallback {
 
     private LaunchListContract.Presenter presenter;
 

@@ -12,8 +12,8 @@ import com.fivedrawdesign.rocketlaunches.list_screen.LaunchListPresenter;
 import com.fivedrawdesign.rocketlaunches.list_screen.LaunchListViewFragment;
 import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
 
-import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_DETAILS_FRAGMENT_TAG;
-import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_LIST_FRAGMENT_TAG;
+import static com.fivedrawdesign.rocketlaunches.data.repository.Config.LAUNCH_DETAILS_FRAGMENT_TAG;
+import static com.fivedrawdesign.rocketlaunches.data.repository.Config.LAUNCH_LIST_FRAGMENT_TAG;
 
 /**
  * Activity to display launches

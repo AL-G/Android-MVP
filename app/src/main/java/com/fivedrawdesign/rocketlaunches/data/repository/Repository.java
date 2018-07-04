@@ -1,9 +1,9 @@
-package com.fivedrawdesign.rocketlaunches.data.source;
+package com.fivedrawdesign.rocketlaunches.data.repository;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
-import com.fivedrawdesign.rocketlaunches.data.source.remote.LaunchesRemoteDataSource;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
+import com.fivedrawdesign.rocketlaunches.data.repository.remote.RemoteDataSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class LaunchesRepository implements LaunchesDataSource {
+public class Repository implements DataSourceIntf {
 
-    public LaunchesRemoteDataSource mLaunchesRemoteDataSource;
+    public RemoteDataSource mLaunchesRemoteDataSource;
 
     public List<Launch> mCachedLaunches;
 
     @Inject
-    public LaunchesRepository(LaunchesRemoteDataSource s) {
+    public Repository(RemoteDataSource s) {
         mCachedLaunches = new ArrayList<Launch>();
-        mLaunchesRemoteDataSource = new LaunchesRemoteDataSource();
+        mLaunchesRemoteDataSource = new RemoteDataSource();
     }
 
     public List<Launch> getCachedLaunches() {

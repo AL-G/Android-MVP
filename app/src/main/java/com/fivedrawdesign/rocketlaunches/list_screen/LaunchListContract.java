@@ -1,7 +1,7 @@
 package com.fivedrawdesign.rocketlaunches.list_screen;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
-import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
+import com.fivedrawdesign.rocketlaunches.data.repository.DataSourceIntf;
 import com.fivedrawdesign.rocketlaunches.utils.BasePresenter;
 import com.fivedrawdesign.rocketlaunches.utils.BaseView;
 
@@ -51,7 +51,7 @@ public interface LaunchListContract {
         /**
          * Get launches from the Api
          */
-        void getLaunches(LaunchesDataSource.LoadLaunchesCallback callback);
+        void getLaunches(DataSourceIntf.LoadLaunchesCallback callback);
 
         /**
          * Get launches from the Repository

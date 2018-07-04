@@ -1,9 +1,9 @@
-package com.fivedrawdesign.rocketlaunches.data.source.remote;
+package com.fivedrawdesign.rocketlaunches.data.repository.remote;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launches;
-import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
+import com.fivedrawdesign.rocketlaunches.data.model.Launches;
+import com.fivedrawdesign.rocketlaunches.data.repository.DataSourceIntf;
 
 import javax.inject.Inject;
 
@@ -16,16 +16,15 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.fivedrawdesign.rocketlaunches.Constants.BASE_URL;
-import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_QUANTITY;
+import static com.fivedrawdesign.rocketlaunches.data.repository.Config.BASE_URL;
+import static com.fivedrawdesign.rocketlaunches.data.repository.Config.LAUNCH_QUANTITY;
 
-
-public class LaunchesRemoteDataSource implements LaunchesDataSource {
+public class RemoteDataSource implements DataSourceIntf {
 
     private static Retrofit retrofit;
 
     @Inject
-    public LaunchesRemoteDataSource() {
+    public RemoteDataSource() {
         retrofit = getRestAdapter();
     }
 

@@ -34,60 +34,10 @@
             android:orientation="vertical"
             android:padding="@dimen/medium_padding">
 
-            <ImageView
-                android:id="@+id/rocket_image"
-                android:layout_width="match_parent"
-                android:layout_height="192dp"
-                android:adjustViewBounds="false"
-                android:scaleType="centerInside"
-                android:contentDescription="@string/rocket_image_content_description" />
-
             <TextView
-                android:id="@+id/rocket_details_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/rocket_details"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/rocket_name"
+                android:id="@+id/launch_details_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/rocket_configuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/rocket_family_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/rocket_wiki_url"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autoLink="web" />
-
-            <TextView
-                android:id="@+id/launch_pads_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/launch_pads"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/launch_pads"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
 
         </LinearLayout>
 

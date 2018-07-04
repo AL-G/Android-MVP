@@ -1,12 +1,12 @@
-package com.fivedrawdesign.rocketlaunches.data.source;
+package com.fivedrawdesign.rocketlaunches.data.repository;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
 
 import java.util.List;
 
-public interface LaunchesDataSource {
+public interface DataSourceIntf {
 
     interface LoadLaunchesCallback {
 

@@ -1,6 +1,7 @@
 package com.fivedrawdesign.rocketlaunches.list_screen.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fivedrawdesign.rocketlaunches.R;
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
 import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsPresenter;
 import com.fivedrawdesign.rocketlaunches.details_screen.LaunchDetailsViewFragment;
 import com.fivedrawdesign.rocketlaunches.utils.HelperUtils;
@@ -21,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.fivedrawdesign.rocketlaunches.Constants.LAUNCH_DETAILS_FRAGMENT_TAG;
+import static com.fivedrawdesign.rocketlaunches.data.repository.Config.LAUNCH_DETAILS_FRAGMENT_TAG;
 
 /**
  * Adapter for launches RecyclerView
@@ -36,14 +37,12 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
      */
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.launch_container)
-        LinearLayout launchContainer;
-        @BindView(R.id.launch_name)
+        @BindView(R.id.launch_list_item_cardview)
+        LinearLayout launchListCardView;
+        @BindView(R.id.launch_list_name)
         TextView name;
-        @BindView(R.id.launch_status)
-        TextView status;
-        @BindView(R.id.launch_window_start)
-        TextView launchWindow;
+        @BindView(R.id.launch_list_date_and_time)
+        TextView launchDate;
 
         MyViewHolder(View view) {
             super(view);
@@ -65,8 +64,9 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
         this.launches = launches;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.launch_recyclerview_item, parent, false);
@@ -75,9 +75,9 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
-        holder.launchContainer.setOnClickListener(new View.OnClickListener() {
+        holder.launchListCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -99,26 +99,11 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
 
         Launch launch = launches.get(holder.getAdapterPosition());
 
+        // set the launch name
         holder.name.setText(launch.getName());
 
-        // set the launch status 1 Green, 2 Red, 3 Success, 4 Failed
-        switch (launch.getStatus()) {
-            case 1:
-                holder.status.setText(context.getString(R.string.launch_status, context.getString(R.string.launch_status_green)));
-                break;
-            case 2:
-                holder.status.setText(context.getString(R.string.launch_status, context.getString(R.string.launch_status_red)));
-                break;
-            case 3:
-                holder.status.setText(context.getString(R.string.launch_status, context.getString(R.string.launch_status_success)));
-                break;
-            case 4:
-                holder.status.setText(context.getString(R.string.launch_status, context.getString(R.string.launch_status_failed)));
-                break;
-        }
-
-        // set the launch window
-        holder.launchWindow.setText(context.getString(R.string.launch_date, launch.getNet()));
+        // set the launch date
+        holder.launchDate.setText(context.getString(R.string.launch_date, launch.getNet()));
 
     }
 
@@ -127,6 +112,4 @@ public class LaunchesAdapter extends RecyclerView.Adapter<LaunchesAdapter.MyView
         return launches.size();
     }
 
-
 }
-

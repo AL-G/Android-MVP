@@ -1,6 +1,6 @@
 package com.fivedrawdesign.rocketlaunches.details_screen;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
 import com.fivedrawdesign.rocketlaunches.utils.BasePresenter;
 import com.fivedrawdesign.rocketlaunches.utils.BaseView;
 

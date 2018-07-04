@@ -2,12 +2,12 @@ package com.fivedrawdesign.rocketlaunches.list_screen;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
-import com.fivedrawdesign.rocketlaunches.data.source.LaunchesDataSource;
-import com.fivedrawdesign.rocketlaunches.data.source.LaunchesRepository;
-import com.fivedrawdesign.rocketlaunches.data.source.di.DaggerLaunchesRepositoryComponent;
-import com.fivedrawdesign.rocketlaunches.data.source.di.LaunchesRepositoryComponent;
-import com.fivedrawdesign.rocketlaunches.data.source.di.LaunchesRepositoryModule;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
+import com.fivedrawdesign.rocketlaunches.data.repository.DataSourceIntf;
+import com.fivedrawdesign.rocketlaunches.data.repository.Repository;
+import com.fivedrawdesign.rocketlaunches.data.repository.di.DaggerRepositoryComponent;
+import com.fivedrawdesign.rocketlaunches.data.repository.di.RepositoryComponent;
+import com.fivedrawdesign.rocketlaunches.data.repository.di.RepositoryModule;
 
 import java.util.List;
 
@@ -19,24 +19,25 @@ import javax.inject.Inject;
 public class LaunchListPresenter implements LaunchListContract.Presenter {
 
     @Inject
-    public LaunchesRepository mLaunchesRepository;
+    public Repository mLaunchesRepository;
 
     private final LaunchListContract.View view;
 
     public LaunchListPresenter(@NonNull LaunchListViewFragment view) {
 
-        LaunchesRepositoryComponent component = DaggerLaunchesRepositoryComponent.builder().launchesRepositoryModule(new LaunchesRepositoryModule()).build();
-        mLaunchesRepository = component.provideLaunchesRepository();
-       // this.mLaunchesRepository = launchesRepository;
+        RepositoryComponent component = DaggerRepositoryComponent.builder().repositoryModule(new RepositoryModule()).build();
+        mLaunchesRepository = component.provideRepository();
+
         this.view = view;
         this.view.setPresenter(this);
+
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void getLaunches(LaunchesDataSource.LoadLaunchesCallback callback) {
+    public void getLaunches(DataSourceIntf.LoadLaunchesCallback callback) {
 
         mLaunchesRepository.getLaunches(callback);
 
@@ -63,7 +64,7 @@ public class LaunchListPresenter implements LaunchListContract.Presenter {
     @Override
     public void start() {
 
-        mLaunchesRepository.getLaunches(new LaunchesDataSource.LoadLaunchesCallback() {
+        mLaunchesRepository.getLaunches(new DataSourceIntf.LoadLaunchesCallback() {
             @Override
             public void onLaunchesLoaded(List<Launch> launches) {
                 view.displayLaunches(launches);

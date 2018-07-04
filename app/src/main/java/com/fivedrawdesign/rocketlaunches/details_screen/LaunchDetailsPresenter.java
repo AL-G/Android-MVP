@@ -2,7 +2,7 @@ package com.fivedrawdesign.rocketlaunches.details_screen;
 
 import android.support.annotation.NonNull;
 
-import com.fivedrawdesign.rocketlaunches.data.entities.Launch;
+import com.fivedrawdesign.rocketlaunches.data.model.Launch;
 
 /**
  * Presenter for the launch details activity
